@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enigma Morse – “usuario”</title>
+  <title>Enigma Se…Senão</title>
   <style>
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #f0f4f8;
-      font-family: Arial, sans-serif;
       margin: 0;
+      background-color: #f3f3f3;
+      font-family: Arial, sans-serif;
     }
     .container {
       background: white;
@@ -32,20 +32,22 @@
     .unlocked {
       color: #0a0;
     }
-    .plaintext {
-      font-family: monospace;
-      font-size: 20px;
+    pre {
+      text-align: left;
       background: #fafafa;
-      padding: 8px 12px;
+      padding: 12px;
+      border: 1px solid #ddd;
       border-radius: 6px;
-      display: inline-block;
+      font-family: monospace;
+      font-size: 14px;
       margin-bottom: 16px;
+      overflow-x: auto;
     }
     ul {
       text-align: left;
       padding-left: 20px;
-      margin-bottom: 16px;
       font-size: 14px;
+      margin-bottom: 16px;
     }
     ul li {
       margin: 6px 0;
@@ -79,10 +81,15 @@
       font-size: 16px;
       color: #333;
     }
-    #message a {
-      display: block;
-      margin-top: 8px;
+    #link {
+      display: none;
+      margin-top: 10px;
+    }
+    #link a {
       color: #007bff;
+      text-decoration: none;
+    }
+    #link a:hover {
       text-decoration: underline;
     }
   </style>
@@ -90,46 +97,59 @@
 <body>
   <div class="container">
     <div id="lockIcon" class="lock">🔒</div>
-    <h2>Enigma Morse</h2>
-    <p>Cifre a palavra abaixo em código Morse:</p>
-    <div class="plaintext">usuario</div>
-    <p>Escolha a alternativa correta:</p>
+    <h2>Enigma: “se…senão”</h2>
+    <pre>
+Algoritmo "EnigmaSeSenao"
+Var
+    numero: inteiro
+Inicio
+    escreva("Digite um número inteiro: ")
+    leia(numero)
+    
+    // Preencha a condição abaixo para verificar se o número é par
+    se ____________________ então
+        escreva("O número ", numero, " é PAR.")
+    senão
+        escreva("O número ", numero, " é ÍMPAR.")
+    fimSe
+Fimalgoritmo
+    </pre>
     <ul>
-      <li>A) ..- ... ..- .- .-. .. ---</li>
-      <li>B) .- ... ..- .- .-. .. ---</li>
-      <li>C) ..- ... .. .- .-. .. ---</li>
-      <li>D) ..- ... ..- .-- .-. .. ---</li>
-      <li>E) ..- ... --- .- .-. .. ---</li>
-      <li>F) ..- ... ..- .- .-.. .. ---</li>
-      <li>G) --. ... ..- .- .-. .. ---</li>
-      <li>H) ..- ... ..- .- .-. .. .--</li>
-      <li>I) ..- ... ..- .- .-. .- ---</li>
-      <li>J) ..- ... ..- .- .-. .. ..-</li>
+      <li>A) numero % 2 = 0</li>
+      <li>B) numero mod 2 = 1</li>
+      <li>C) numero // 2 = 0</li>
+      <li>D) numero DIV 2 = 0</li>
+      <li>E) numero MOD 2 = 0</li>
     </ul>
     <div>
       <input type="text" id="codeInput" maxlength="1" placeholder="Letra"/>
       <button onclick="checkCode()">Desbloquear</button>
     </div>
-    <p id="message">
-      🎉 Parabéns! Você decifrou o enigma.<br/>
-      <a href="https://eng-pablo-tec.github.io/enigma8" target="_blank">Próximo Enigma</a>
-    </p>
+    <p id="message">🎉 Parabéns! Você decifrou o enigma!</p>
+    <div id="link">
+      <p>Próximo enigma: <a href="https://eng-pablo-tec.github.io/enigma8/" target="_blank">Clique aqui</a></p>
+    </div>
   </div>
 
   <script>
     function checkCode() {
-      const user = document.getElementById('codeInput').value.toUpperCase();
+      const user = document.getElementById('codeInput').value.trim().toUpperCase();
       const icon = document.getElementById('lockIcon');
       const msg  = document.getElementById('message');
-      // Alternativa correta: A
+      const link = document.getElementById('link');
+      // resposta correta: A
       if (user === 'A') {
         icon.textContent = '🔓';
         icon.classList.add('unlocked');
-        setTimeout(() => msg.style.display = 'block', 300);
+        setTimeout(() => {
+          msg.style.display = 'block';
+          link.style.display = 'block';
+        }, 300);
       } else {
         icon.textContent = '🔒';
         icon.classList.remove('unlocked');
         msg.style.display = 'none';
+        link.style.display = 'none';
       }
     }
   </script>
